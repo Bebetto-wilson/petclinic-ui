@@ -8,7 +8,19 @@ import { AuthService } from '../_services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  formdata = {name:"",email:"",password:""};
+  // formdata = {name:"",email:"",password:""};
+  formdata = {
+    firstName: null,
+    lastName: null,
+    address: null,
+    email: null,
+    phone: null,
+    role: {
+        id: 2,
+    },
+    "password": null,
+}
+
   submit=false;
   errorMessage="";
   loading=false;
@@ -25,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
       //call register service
       this.auth
-      .register(this.formdata.name,this.formdata.email,this.formdata.password)
+      .register(this.formdata)
       .subscribe({
           next:data=>{
               //store token from response data

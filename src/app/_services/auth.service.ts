@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
+// const baseURL = 'http://localhost:8081/api/v1/users/create';
 export class AuthService {
 
   constructor(private router:Router,private http:HttpClient) { }
@@ -29,12 +31,13 @@ export class AuthService {
     }
   }
 
-  register(name:string,email:string,password:string){
+  register( user: any){
+    // const userData = {firstName: user.firstName, lastName: user.lastName, email: user.email, password: user.password, address: user.address, phone: user.phone};
       //send data to register api (firebase)
      return this.http
       .post<{idToken:string}>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]',
-          {displayName:name,email,password}
+        'http://localhost:8081/api/v1/users/create',
+        user
       );
   }
 
